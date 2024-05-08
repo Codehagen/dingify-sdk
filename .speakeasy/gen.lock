@@ -7,6 +7,7 @@ management:
   generationVersion: 2.326.3
   releaseVersion: 0.1.0
   configChecksum: cc0526e1e269a35fd313452ac5bac47d
+  published: true
 features:
   typescript:
     additionalDependencies: 0.1.0

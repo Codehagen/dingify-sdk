@@ -12,3 +12,6 @@ workflow:
         my-first-target:
             target: typescript
             source: sample-source
+            publish:
+                npm:
+                    token: $npm_token
