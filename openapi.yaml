@@ -1,0 +1,112 @@
+openapi: 3.1.0
+info:
+  title: Digify Event Management
+  description: API for managing users, their events, and projects.
+  version: 1.0.0
+servers:
+  - url: https://my-app.christer-hagen.workers.dev/
+    description: The production server.
+security:
+  - api_key: []
+tags:
+  - name: events
+    description: Operations related to event management.
+paths:
+  /events:
+    post:
+      tags:
+        - events
+      operationId: create
+      summary: Log a new event
+      description: Logs a new event for a user in a specified channel.
+      requestBody:
+        description: Details of the event to log.
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EventCreate"
+      responses:
+        "201":
+          description: Event logged successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Event"
+        "400":
+          description: Invalid input data.
+        "404":
+          description: Channel or project not found.
+components:
+  securitySchemes:
+    api_key:
+      type: apiKey
+      name: api_key
+      in: header
+  schemas:
+    Event:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the event.
+          example: Annual Meetup
+        channel:
+          type: string
+          description: The channel name associated with the event.
+          example: Main Channel
+        event:
+          type: string
+          description: The specific event being described.
+          example: Tech Conference
+        icon:
+          type: string
+          description: An optional icon for visual representation of the event.
+          example: icon_event.png
+        notify:
+          type: boolean
+          description: Flag indicating whether users should be notified about the event.
+          example: true
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+          description: Tags providing additional context or categorization for the event.
+          example:
+            Networking: Yes
+            Tech: Yes
+      required:
+        - name
+        - channel
+        - event
+        - notify
+    EventCreate:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the event.
+          example: You got a new payment
+        channel:
+          type: string
+          description: The channel name where the event is registered.
+          example: new-channel-name
+        icon:
+          type: string
+          description: An optional icon representing the event.
+          example: 🎉
+        notify:
+          type: boolean
+          description: Whether to notify users about the event.
+          example: true
+        tags:
+          type: object
+          additionalProperties:
+            type: string
+          description: Additional tags providing context for the event.
+          example:
+            plan: premium
+            cycle: monthly
+      required:
+        - name
+        - channel
+        - notify

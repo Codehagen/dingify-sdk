@@ -1,0 +1,65 @@
+lockVersion: 2.0.0
+id: 6250b250-1f28-403b-a1c6-452ade2211c7
+management:
+  docChecksum: fff41649bc959be3d7788064d989666c
+  docVersion: 1.0.0
+  speakeasyVersion: 1.285.0
+  generationVersion: 2.326.3
+  releaseVersion: 0.1.0
+  configChecksum: cc0526e1e269a35fd313452ac5bac47d
+features:
+  typescript:
+    additionalDependencies: 0.1.0
+    core: 3.9.3
+    globalSecurity: 2.82.9
+    globalSecurityCallbacks: 0.1.0
+    globalSecurityFlattening: 0.1.0
+    globalServerURLs: 2.82.4
+    responseFormat: 0.2.3
+    sdkHooks: 0.1.0
+generatedFiles:
+  - src/sdk/events.ts
+  - src/sdk/sdk.ts
+  - .eslintrc.js
+  - .npmignore
+  - RUNTIMES.md
+  - jsr.json
+  - package.json
+  - src/index.ts
+  - src/lib/base64.ts
+  - src/lib/config.ts
+  - src/lib/encodings.ts
+  - src/lib/http.ts
+  - src/lib/retries.ts
+  - src/lib/schemas.ts
+  - src/lib/sdks.ts
+  - src/lib/security.ts
+  - src/lib/url.ts
+  - src/sdk/index.ts
+  - src/models/errors/sdkerror.ts
+  - src/models/errors/sdkvalidationerror.ts
+  - src/types/blobs.ts
+  - src/types/index.ts
+  - src/types/operations.ts
+  - src/types/rfcdate.ts
+  - tsconfig.json
+  - src/models/operations/create.ts
+  - src/models/components/event.ts
+  - src/models/components/httpmetadata.ts
+  - src/models/components/eventcreate.ts
+  - src/models/components/security.ts
+  - src/models/errors/index.ts
+  - src/models/operations/index.ts
+  - src/models/components/index.ts
+  - docs/models/operations/createresponse.md
+  - docs/models/components/event.md
+  - docs/models/components/httpmetadata.md
+  - docs/models/components/eventcreate.md
+  - docs/models/components/security.md
+  - docs/sdks/dingify/README.md
+  - docs/sdks/events/README.md
+  - USAGE.md
+  - .gitattributes
+  - src/hooks/hooks.ts
+  - src/hooks/types.ts
+  - src/hooks/index.ts
