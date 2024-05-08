@@ -1,5 +1,10 @@
 lockfileVersion: '6.0'
 
+dependencies:
+  zod-openapi:
+    specifier: ^2.17.0
+    version: 2.17.0(zod@3.23.7)
+
 devDependencies:
   '@types/jsonpath':
     specifier: ^0.2.4
@@ -1793,6 +1798,14 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
+  /zod-openapi@2.17.0(zod@3.23.7):
+    resolution: {integrity: sha512-S6x14LmPWZ3Sbnx71pqzIB6oIox1ce6vHnJY7ZUYLBm8TTEQ6/g6+kwutna5jplAhzphkMbYPbtW3cmHXFcRBg==}
+    engines: {node: '>=16.11'}
+    peerDependencies:
+      zod: ^3.21.4
+    dependencies:
+      zod: 3.23.7
+    dev: false
+
   /zod@3.23.7:
     resolution: {integrity: sha512-NBeIoqbtOiUMomACV/y+V3Qfs9+Okr18vR5c/5pHClPpufWOrsx8TENboDPe265lFdfewX2yBtNTLPvnmCxwog==}
-    dev: true
