@@ -22,13 +22,13 @@ It has been generated successfully based on your OpenAPI spec. However, it is no
 ### NPM
 
 ```bash
-npm add <UNSET>
+npm add https://github.com/Codehagen/dingify-sdk
 ```
 
 ### Yarn
 
 ```bash
-yarn add <UNSET>
+yarn add https://github.com/Codehagen/dingify-sdk
 ```
 <!-- End SDK Installation [installation] -->
 

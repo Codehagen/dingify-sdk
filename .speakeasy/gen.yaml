@@ -35,5 +35,5 @@ typescript:
   methodArguments: require-security-and-request
   outputModelSuffix: output
   packageName: dingify
-  responseFormat: envelope-http
+  responseFormat: flat
   templateVersion: v2
