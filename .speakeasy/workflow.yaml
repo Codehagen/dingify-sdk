@@ -4,6 +4,8 @@ sources:
     sample-source:
         inputs:
             - location: openapi.yaml
+        registry:
+            location: registry.speakeasyapi.dev/placeholderapi/placeholderapi/sample-source
 targets:
     my-first-target:
         target: typescript

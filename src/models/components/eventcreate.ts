@@ -24,20 +24,12 @@ export type EventCreate = {
     /**
      * Additional tags providing context for the event.
      */
-    tags?: Record<string, string> | undefined;
+    tags?: { [k: string]: string } | undefined;
 };
 
 /** @internal */
 export namespace EventCreate$ {
-    export type Inbound = {
-        name: string;
-        channel: string;
-        icon?: string | undefined;
-        notify: boolean;
-        tags?: Record<string, string> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<EventCreate, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<EventCreate, z.ZodTypeDef, unknown> = z
         .object({
             name: z.string(),
             channel: z.string(),
@@ -60,7 +52,7 @@ export namespace EventCreate$ {
         channel: string;
         icon?: string | undefined;
         notify: boolean;
-        tags?: Record<string, string> | undefined;
+        tags?: { [k: string]: string } | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, EventCreate> = z

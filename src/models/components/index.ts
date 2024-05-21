@@ -4,5 +4,4 @@
 
 export * from "./event";
 export * from "./eventcreate";
-export * from "./httpmetadata";
 export * from "./security";

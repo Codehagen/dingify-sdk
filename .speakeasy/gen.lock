@@ -1,17 +1,17 @@
 lockVersion: 2.0.0
 id: 6250b250-1f28-403b-a1c6-452ade2211c7
 management:
-  docChecksum: fff41649bc959be3d7788064d989666c
+  docChecksum: a1be9b40569ebf62e0275c4805abe0b6
   docVersion: 1.0.0
-  speakeasyVersion: 1.285.0
-  generationVersion: 2.326.3
-  releaseVersion: 0.1.0
-  configChecksum: cc0526e1e269a35fd313452ac5bac47d
+  speakeasyVersion: 1.294.0
+  generationVersion: 2.333.3
+  releaseVersion: 0.1.2
+  configChecksum: d77e03308f52cbdf77b39e71f3a75b2c
   published: true
 features:
   typescript:
     additionalDependencies: 0.1.0
-    core: 3.9.3
+    core: 3.9.4
     globalSecurity: 2.82.9
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
@@ -40,21 +40,17 @@ generatedFiles:
   - src/models/errors/sdkerror.ts
   - src/models/errors/sdkvalidationerror.ts
   - src/types/blobs.ts
+  - src/types/enums.ts
   - src/types/index.ts
   - src/types/operations.ts
   - src/types/rfcdate.ts
   - tsconfig.json
-  - src/models/operations/create.ts
   - src/models/components/event.ts
-  - src/models/components/httpmetadata.ts
   - src/models/components/eventcreate.ts
   - src/models/components/security.ts
   - src/models/errors/index.ts
-  - src/models/operations/index.ts
   - src/models/components/index.ts
-  - docs/models/operations/createresponse.md
   - docs/models/components/event.md
-  - docs/models/components/httpmetadata.md
   - docs/models/components/eventcreate.md
   - docs/models/components/security.md
   - docs/sdks/dingify/README.md

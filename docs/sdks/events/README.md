@@ -52,7 +52,7 @@ run();
 
 ### Response
 
-**Promise<[operations.CreateResponse](../../models/operations/createresponse.md)>**
+**Promise<[components.Event](../../models/components/event.md)>**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

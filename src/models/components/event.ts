@@ -20,7 +20,7 @@ export type Event = {
     /**
      * An optional icon for visual representation of the event.
      */
-    icon?: string | undefined;
+    icon: string;
     /**
      * Flag indicating whether users should be notified about the event.
      */
@@ -28,26 +28,17 @@ export type Event = {
     /**
      * Tags providing additional context or categorization for the event.
      */
-    tags?: Record<string, string> | undefined;
+    tags?: { [k: string]: string } | undefined;
 };
 
 /** @internal */
 export namespace Event$ {
-    export type Inbound = {
-        name: string;
-        channel: string;
-        event: string;
-        icon?: string | undefined;
-        notify: boolean;
-        tags?: Record<string, string> | undefined;
-    };
-
-    export const inboundSchema: z.ZodType<Event, z.ZodTypeDef, Inbound> = z
+    export const inboundSchema: z.ZodType<Event, z.ZodTypeDef, unknown> = z
         .object({
             name: z.string(),
             channel: z.string(),
             event: z.string(),
-            icon: z.string().optional(),
+            icon: z.string(),
             notify: z.boolean(),
             tags: z.record(z.string()).optional(),
         })
@@ -56,7 +47,7 @@ export namespace Event$ {
                 name: v.name,
                 channel: v.channel,
                 event: v.event,
-                ...(v.icon === undefined ? null : { icon: v.icon }),
+                icon: v.icon,
                 notify: v.notify,
                 ...(v.tags === undefined ? null : { tags: v.tags }),
             };
@@ -66,9 +57,9 @@ export namespace Event$ {
         name: string;
         channel: string;
         event: string;
-        icon?: string | undefined;
+        icon: string;
         notify: boolean;
-        tags?: Record<string, string> | undefined;
+        tags?: { [k: string]: string } | undefined;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Event> = z
@@ -76,7 +67,7 @@ export namespace Event$ {
             name: z.string(),
             channel: z.string(),
             event: z.string(),
-            icon: z.string().optional(),
+            icon: z.string(),
             notify: z.boolean(),
             tags: z.record(z.string()).optional(),
         })
@@ -85,7 +76,7 @@ export namespace Event$ {
                 name: v.name,
                 channel: v.channel,
                 event: v.event,
-                ...(v.icon === undefined ? null : { icon: v.icon }),
+                icon: v.icon,
                 notify: v.notify,
                 ...(v.tags === undefined ? null : { tags: v.tags }),
             };

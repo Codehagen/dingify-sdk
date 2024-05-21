@@ -10,7 +10,6 @@ import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
 import * as components from "../models/components";
 import * as errors from "../models/errors";
-import * as operations from "../models/operations";
 
 export class Events extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
@@ -48,7 +47,7 @@ export class Events extends ClientSDK {
     async create(
         request?: components.EventCreate | undefined,
         options?: RequestOptions
-    ): Promise<operations.CreateResponse> {
+    ): Promise<components.Event> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -98,31 +97,23 @@ export class Events extends ClientSDK {
 
         const response = await this.do$(request$, doOptions);
 
-        const responseFields$ = {
-            HttpMeta: {
-                Response: response,
-                Request: request$,
-            },
-        };
-
         if (this.matchResponse(response, 201, "application/json")) {
             const responseBody = await response.json();
             const result = schemas$.parse(
                 responseBody,
                 (val$) => {
-                    return operations.CreateResponse$.inboundSchema.parse({
-                        ...responseFields$,
-                        Event: val$,
-                    });
+                    return components.Event$.inboundSchema.parse(val$);
                 },
                 "Response validation failed"
             );
             return result;
         } else {
-            throw new errors.SDKError("Unexpected API response status or content-type", {
+            const responseBody = await response.text();
+            throw new errors.SDKError(
+                "Unexpected API response status or content-type",
                 response,
-                request: request$,
-            });
+                responseBody
+            );
         }
     }
 }
