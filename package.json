@@ -1,9 +1,13 @@
 {
   "name": "dingify",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "author": "Speakeasy",  
   "main": "./index.js",
   "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Codehagen/dingify-sdk.git"
+  },
   "scripts": {
     "lint": "eslint --max-warnings=0 src",
     "build": "tsc",
