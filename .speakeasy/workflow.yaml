@@ -12,4 +12,4 @@ targets:
         source: sample-source
         publish:
             npm:
-                token: $npm_7ybsd2993uew0zrdkfpb29jicupjwk364y1i
+                token: $npm_token
