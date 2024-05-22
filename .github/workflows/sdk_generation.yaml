@@ -22,6 +22,5 @@ jobs:
       speakeasy_version: latest
     secrets:
       github_access_token: ${{ secrets.GITHUB_TOKEN }}
-      npm_7ybsd2993uew0zrdkfpb29jicupjwk364y1i: ${{ secrets.NPM_7YBSD2993UEW0ZRDKFPB29JICUPJWK364Y1I }}
       npm_token: ${{ secrets.NPM_TOKEN }}
       speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}

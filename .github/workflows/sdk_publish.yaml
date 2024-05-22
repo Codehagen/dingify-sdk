@@ -10,12 +10,11 @@ permissions:
       - main
     paths:
       - RELEASES.md
-      - '*/RELEASES.md'
+      - "*/RELEASES.md"
 jobs:
   publish:
     uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-publish.yaml@v15
     secrets:
       github_access_token: ${{ secrets.GITHUB_TOKEN }}
-      npm_7ybsd2993uew0zrdkfpb29jicupjwk364y1i: ${{ secrets.NPM_7YBSD2993UEW0ZRDKFPB29JICUPJWK364Y1I }}
       npm_token: ${{ secrets.NPM_TOKEN }}
       speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
