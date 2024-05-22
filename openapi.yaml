@@ -40,7 +40,7 @@ components:
   securitySchemes:
     api_key:
       type: apiKey
-      name: api_key
+      name: X-API-KEY
       in: header
   schemas:
     Event:
