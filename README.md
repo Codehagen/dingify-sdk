@@ -145,7 +145,7 @@ You can override the default server globally by passing a server index to the `s
 
 | # | Server | Variables |
 | - | ------ | --------- |
-| 0 | `https://api.dingify.workers.dev` | None |
+| 0 | `https://api.dingify.workers.dev/api` | None |
 
 ```typescript
 import { Dingify } from "dingify";
@@ -184,7 +184,7 @@ The default server can also be overridden globally by passing a URL to the `serv
 import { Dingify } from "dingify";
 
 const dingify = new Dingify({
-    serverURL: "https://api.dingify.workers.dev",
+    serverURL: "https://api.dingify.workers.dev/api",
     apiKey: "<YOUR_API_KEY_HERE>",
 });
 

@@ -4,7 +4,7 @@ info:
   description: API for managing users, their events, and projects.
   version: 1.0.0
 servers:
-  - url: https://api.dingify.workers.dev
+  - url: https://api.dingify.workers.dev/api
     description: The production server.
 security:
   - api_key: []

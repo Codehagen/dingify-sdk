@@ -2,18 +2,17 @@ speakeasyVersion: 1.295.0
 sources:
     sample-source:
         sourceNamespace: sample-source
-        sourceRevisionDigest: sha256:3b8c4b2be9cb0979099223fbec86cf2fa51a0638d029893af1d623875d2c0ff9
-        sourceBlobDigest: sha256:1728728a6c8a94df839260d9cf768f9481ad54ec03ad7d78b53bc5ddfc3049d1
+        sourceRevisionDigest: sha256:f676b94e89452b7e33f7cb74656dcdf8adafb5c953b7cf1fd82b790a94c58c25
+        sourceBlobDigest: sha256:308afb993b9132d0c8b0e00aaa9bbe8766dc83b475de0995fc8ab54427cfe6db
         tags:
             - latest
-            - main
 targets:
     my-first-target:
         source: sample-source
         sourceNamespace: sample-source
-        sourceRevisionDigest: sha256:3b8c4b2be9cb0979099223fbec86cf2fa51a0638d029893af1d623875d2c0ff9
-        sourceBlobDigest: sha256:1728728a6c8a94df839260d9cf768f9481ad54ec03ad7d78b53bc5ddfc3049d1
-        outLocation: /github/workspace/repo
+        sourceRevisionDigest: sha256:f676b94e89452b7e33f7cb74656dcdf8adafb5c953b7cf1fd82b790a94c58c25
+        sourceBlobDigest: sha256:308afb993b9132d0c8b0e00aaa9bbe8766dc83b475de0995fc8ab54427cfe6db
+        outLocation: /Users/christer/Documents/dev/dingify-sdk/dingify-sdk
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
