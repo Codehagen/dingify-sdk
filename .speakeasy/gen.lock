@@ -5,8 +5,8 @@ management:
   docVersion: 1.0.0
   speakeasyVersion: 1.295.0
   generationVersion: 2.333.3
-  releaseVersion: 0.1.5
-  configChecksum: 5d50b73f72a7bb9d9447cd6e560d2cd5
+  releaseVersion: 0.1.6
+  configChecksum: 9a0d4e4462216e53599f95f68146a2b0
   repoURL: https://github.com/Codehagen/dingify-sdk.git
   installationURL: https://github.com/Codehagen/dingify-sdk
   published: true
@@ -55,8 +55,6 @@ generatedFiles:
   - docs/models/components/event.md
   - docs/models/components/eventcreate.md
   - docs/models/components/security.md
-  - docs/sdks/dingify/README.md
-  - docs/sdks/events/README.md
   - USAGE.md
   - .gitattributes
   - src/hooks/hooks.ts
