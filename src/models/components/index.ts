@@ -4,5 +4,6 @@
 
 export * from "./event";
 export * from "./eventcreate";
+export * from "./eventresponse";
 export * from "./eventsresponse";
 export * from "./security";

@@ -44,10 +44,10 @@ export class Events extends ClientSDK {
      * @remarks
      * Logs a new event for a user in a specified channel.
      */
-    async createEvent(
+    async create(
         request?: components.EventCreate | undefined,
         options?: RequestOptions
-    ): Promise<components.Event> {
+    ): Promise<components.EventResponse> {
         const input$ = request;
         const headers$ = new Headers();
         headers$.set("user-agent", SDK_METADATA.userAgent);
@@ -75,7 +75,7 @@ export class Events extends ClientSDK {
             security$ = {};
         }
         const context = {
-            operationID: "createEvent",
+            operationID: "create",
             oAuth2Scopes: [],
             securitySource: this.options$.apiKey,
         };
@@ -101,8 +101,8 @@ export class Events extends ClientSDK {
             HttpMeta: { Response: response, Request: request$ },
         };
 
-        const [result$] = await this.matcher<components.Event>()
-            .json(201, components.Event$)
+        const [result$] = await this.matcher<components.EventResponse>()
+            .json(201, components.EventResponse$)
             .fail([400, 404, "4XX", "5XX"])
             .json(401, errors.UnauthorizedError$, { err: true })
             .match(response, { extraFields: responseFields$ });
