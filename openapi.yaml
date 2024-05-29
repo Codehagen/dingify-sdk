@@ -16,7 +16,7 @@ paths:
     post:
       tags:
         - events
-      operationId: createEvent
+      operationId: create
       summary: Log a new event
       description: Logs a new event for a user in a specified channel.
       requestBody:
@@ -31,7 +31,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/Event"
+                $ref: "#/components/schemas/EventResponse"
         "400":
           description: Invalid input data.
         "401":
@@ -68,6 +68,17 @@ components:
       name: X-API-KEY
       in: header
   schemas:
+    EventResponse:
+      type: object
+      properties:
+        ok:
+          type: boolean
+          example: true
+        message:
+          type: string
+          example: Event logged!
+        event:
+          $ref: "#/components/schemas/Event"
     Event:
       type: object
       properties:
