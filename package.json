@@ -1,6 +1,6 @@
 {
   "name": "dingify",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "author": "Speakeasy",  
   "main": "./index.js",
   "sideEffects": false,
