@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Digify Event Management
+  title: Dingify Event Management
   description: API for managing users, their events, and projects.
   version: 1.0.0
 servers:
@@ -16,7 +16,7 @@ paths:
     post:
       tags:
         - events
-      operationId: create
+      operationId: createEvent
       summary: Log a new event
       description: Logs a new event for a user in a specified channel.
       requestBody:
@@ -34,8 +34,33 @@ paths:
                 $ref: "#/components/schemas/Event"
         "400":
           description: Invalid input data.
+        "401":
+          description: API key is required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UnauthorizedError"
         "404":
           description: Channel or project not found.
+    get:
+      tags:
+        - events
+      operationId: getEvents
+      summary: Retrieve all events
+      description: Retrieves all logged events that the user has access to.
+      responses:
+        "200":
+          description: List of events retrieved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/EventsResponse"
+        "401":
+          description: API key is required
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UnauthorizedError"
 components:
   securitySchemes:
     api_key:
@@ -46,18 +71,22 @@ components:
     Event:
       type: object
       properties:
+        id:
+          type: string
+          description: The ID of the event.
+          example: clwj5o92a0001adaz8mcbxqja
         name:
           type: string
           description: The name of the event.
-          example: Annual Meetup
-        channel:
+          example: You got a new payment
+        channelId:
           type: string
-          description: The channel name associated with the event.
-          example: Main Channel
-        event:
+          description: The ID of the channel associated with the event.
+          example: new-channel-name
+        userId:
           type: string
-          description: The specific event being described.
-          example: Tech Conference
+          description: The ID of the user associated with the event.
+          example: user-999
         icon:
           type: string
           description: An optional icon for visual representation of the event.
@@ -74,12 +103,19 @@ components:
           example:
             Networking: Yes
             Tech: Yes
+        createdAt:
+          type: string
+          format: date-time
+          description: The timestamp when the event was created.
+          example: 2024-05-23T11:14:27.682Z
       required:
+        - id
         - name
-        - channel
-        - event
+        - channelId
+        - userId
         - icon
         - notify
+        - createdAt
     EventCreate:
       type: object
       properties:
@@ -91,6 +127,10 @@ components:
           type: string
           description: The channel name where the event is registered.
           example: new-channel-name
+        user_id:
+          type: string
+          description: The ID of the user associated with the event.
+          example: user-999
         icon:
           type: string
           description: An optional icon representing the event.
@@ -111,3 +151,26 @@ components:
         - name
         - channel
         - notify
+        - user_id
+    EventsResponse:
+      type: object
+      properties:
+        ok:
+          type: boolean
+          example: true
+        events:
+          type: array
+          items:
+            $ref: "#/components/schemas/Event"
+    UnauthorizedError:
+      required:
+        - ok
+        - message
+      type: object
+      properties:
+        ok:
+          type: boolean
+          example: false
+        message:
+          type: string
+          example: API key is required

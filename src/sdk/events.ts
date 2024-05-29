@@ -9,6 +9,7 @@ import { HTTPClient } from "../lib/http";
 import * as schemas$ from "../lib/schemas";
 import { ClientSDK, RequestOptions } from "../lib/sdks";
 import * as components from "../models/components";
+import * as errors from "../models/errors";
 
 export class Events extends ClientSDK {
     private readonly options$: SDKOptions & { hooks?: SDKHooks };
@@ -43,7 +44,7 @@ export class Events extends ClientSDK {
      * @remarks
      * Logs a new event for a user in a specified channel.
      */
-    async create(
+    async createEvent(
         request?: components.EventCreate | undefined,
         options?: RequestOptions
     ): Promise<components.Event> {
@@ -74,13 +75,13 @@ export class Events extends ClientSDK {
             security$ = {};
         }
         const context = {
-            operationID: "create",
+            operationID: "createEvent",
             oAuth2Scopes: [],
             securitySource: this.options$.apiKey,
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "404", "4XX", "5XX"] };
+        const doOptions = { context, errorCodes: ["400", "401", "404", "4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             {
@@ -96,10 +97,73 @@ export class Events extends ClientSDK {
 
         const response = await this.do$(request$, doOptions);
 
+        const responseFields$ = {
+            HttpMeta: { Response: response, Request: request$ },
+        };
+
         const [result$] = await this.matcher<components.Event>()
             .json(201, components.Event$)
             .fail([400, 404, "4XX", "5XX"])
-            .match(response);
+            .json(401, errors.UnauthorizedError$, { err: true })
+            .match(response, { extraFields: responseFields$ });
+
+        return result$;
+    }
+
+    /**
+     * Retrieve all events
+     *
+     * @remarks
+     * Retrieves all logged events that the user has access to.
+     */
+    async getEvents(options?: RequestOptions): Promise<components.EventsResponse> {
+        const headers$ = new Headers();
+        headers$.set("user-agent", SDK_METADATA.userAgent);
+        headers$.set("Accept", "application/json");
+
+        const path$ = this.templateURLComponent("/events")();
+
+        const query$ = "";
+
+        let security$;
+        if (typeof this.options$.apiKey === "function") {
+            security$ = { apiKey: await this.options$.apiKey() };
+        } else if (this.options$.apiKey) {
+            security$ = { apiKey: this.options$.apiKey };
+        } else {
+            security$ = {};
+        }
+        const context = {
+            operationID: "getEvents",
+            oAuth2Scopes: [],
+            securitySource: this.options$.apiKey,
+        };
+        const securitySettings$ = this.resolveGlobalSecurity(security$);
+
+        const doOptions = { context, errorCodes: ["401", "4XX", "5XX"] };
+        const request$ = this.createRequest$(
+            context,
+            {
+                security: securitySettings$,
+                method: "GET",
+                path: path$,
+                headers: headers$,
+                query: query$,
+            },
+            options
+        );
+
+        const response = await this.do$(request$, doOptions);
+
+        const responseFields$ = {
+            HttpMeta: { Response: response, Request: request$ },
+        };
+
+        const [result$] = await this.matcher<components.EventsResponse>()
+            .json(200, components.EventsResponse$)
+            .json(401, errors.UnauthorizedError$, { err: true })
+            .fail(["4XX", "5XX"])
+            .match(response, { extraFields: responseFields$ });
 
         return result$;
     }

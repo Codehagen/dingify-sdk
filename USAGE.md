@@ -7,9 +7,10 @@ const dingify = new Dingify({
 });
 
 async function run() {
-    const result = await dingify.events.create({
+    const result = await dingify.events.createEvent({
         name: "You got a new payment",
         channel: "new-channel-name",
+        userId: "user-999",
         icon: "🎉",
         notify: true,
         tags: {

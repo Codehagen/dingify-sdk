@@ -4,3 +4,4 @@
 
 export * from "./sdkerror";
 export * from "./sdkvalidationerror";
+export * from "./unauthorizederror";

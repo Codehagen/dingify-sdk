@@ -120,9 +120,10 @@ For supported JavaScript runtimes, please consult [RUNTIMES.md](RUNTIMES.md).
 
 All SDK methods return a response object or throw an error. If Error objects are specified in your OpenAPI Spec, the SDK will throw the appropriate Error type.
 
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4xx-5xx         | */*             |
+| Error Object             | Status Code              | Content Type             |
+| ------------------------ | ------------------------ | ------------------------ |
+| errors.UnauthorizedError | 401                      | application/json         |
+| errors.SDKError          | 4xx-5xx                  | */*                      |
 
 Validation errors can also occur when either method arguments or data returned from the server do not match the expected format. The `SDKValidationError` that is thrown as a result will capture the raw value that failed validation in an attribute called `rawValue`. Additionally, a `pretty()` method is available on this error that can be used to log a nicely formatted string since validation errors can list many issues and the plain error string may be difficult read when debugging. 
 
@@ -138,9 +139,10 @@ const dingify = new Dingify({
 async function run() {
     let result;
     try {
-        result = await dingify.events.create({
+        result = await dingify.events.createEvent({
             name: "You got a new payment",
             channel: "new-channel-name",
+            userId: "user-999",
             icon: "🎉",
             notify: true,
             tags: {
@@ -155,6 +157,10 @@ async function run() {
                 console.error(err.pretty());
                 // Raw value may also be inspected
                 console.error(err.rawValue);
+                return;
+            }
+            case err instanceof errors.UnauthorizedError: {
+                console.error(err); // handle exception
                 return;
             }
             default: {
@@ -192,9 +198,10 @@ const dingify = new Dingify({
 });
 
 async function run() {
-    const result = await dingify.events.create({
+    const result = await dingify.events.createEvent({
         name: "You got a new payment",
         channel: "new-channel-name",
+        userId: "user-999",
         icon: "🎉",
         notify: true,
         tags: {
@@ -225,9 +232,10 @@ const dingify = new Dingify({
 });
 
 async function run() {
-    const result = await dingify.events.create({
+    const result = await dingify.events.createEvent({
         name: "You got a new payment",
         channel: "new-channel-name",
+        userId: "user-999",
         icon: "🎉",
         notify: true,
         tags: {
@@ -314,9 +322,10 @@ const dingify = new Dingify({
 });
 
 async function run() {
-    const result = await dingify.events.create({
+    const result = await dingify.events.createEvent({
         name: "You got a new payment",
         channel: "new-channel-name",
+        userId: "user-999",
         icon: "🎉",
         notify: true,
         tags: {

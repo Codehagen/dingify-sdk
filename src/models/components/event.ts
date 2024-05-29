@@ -6,17 +6,21 @@ import * as z from "zod";
 
 export type Event = {
     /**
+     * The ID of the event.
+     */
+    id: string;
+    /**
      * The name of the event.
      */
     name: string;
     /**
-     * The channel name associated with the event.
+     * The ID of the channel associated with the event.
      */
-    channel: string;
+    channelId: string;
     /**
-     * The specific event being described.
+     * The ID of the user associated with the event.
      */
-    event: string;
+    userId: string;
     /**
      * An optional icon for visual representation of the event.
      */
@@ -29,56 +33,73 @@ export type Event = {
      * Tags providing additional context or categorization for the event.
      */
     tags?: { [k: string]: string } | undefined;
+    /**
+     * The timestamp when the event was created.
+     */
+    createdAt: Date;
 };
 
 /** @internal */
 export namespace Event$ {
     export const inboundSchema: z.ZodType<Event, z.ZodTypeDef, unknown> = z
         .object({
+            id: z.string(),
             name: z.string(),
-            channel: z.string(),
-            event: z.string(),
+            channelId: z.string(),
+            userId: z.string(),
             icon: z.string(),
             notify: z.boolean(),
             tags: z.record(z.string()).optional(),
+            createdAt: z
+                .string()
+                .datetime({ offset: true })
+                .transform((v) => new Date(v)),
         })
         .transform((v) => {
             return {
+                id: v.id,
                 name: v.name,
-                channel: v.channel,
-                event: v.event,
+                channelId: v.channelId,
+                userId: v.userId,
                 icon: v.icon,
                 notify: v.notify,
                 ...(v.tags === undefined ? null : { tags: v.tags }),
+                createdAt: v.createdAt,
             };
         });
 
     export type Outbound = {
+        id: string;
         name: string;
-        channel: string;
-        event: string;
+        channelId: string;
+        userId: string;
         icon: string;
         notify: boolean;
         tags?: { [k: string]: string } | undefined;
+        createdAt: string;
     };
 
     export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Event> = z
         .object({
+            id: z.string(),
             name: z.string(),
-            channel: z.string(),
-            event: z.string(),
+            channelId: z.string(),
+            userId: z.string(),
             icon: z.string(),
             notify: z.boolean(),
             tags: z.record(z.string()).optional(),
+            createdAt: z.date().transform((v) => v.toISOString()),
         })
         .transform((v) => {
             return {
+                id: v.id,
                 name: v.name,
-                channel: v.channel,
-                event: v.event,
+                channelId: v.channelId,
+                userId: v.userId,
                 icon: v.icon,
                 notify: v.notify,
                 ...(v.tags === undefined ? null : { tags: v.tags }),
+                createdAt: v.createdAt,
             };
         });
 }

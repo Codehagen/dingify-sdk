@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 6250b250-1f28-403b-a1c6-452ade2211c7
 management:
-  docChecksum: f773c956b74326e3015b5e1eeaaa65be
+  docChecksum: 077e3596d21056aedf1e4986d16aa69e
   docVersion: 1.0.0
-  speakeasyVersion: 1.296.1
+  speakeasyVersion: 1.297.0
   generationVersion: 2.338.1
-  releaseVersion: 0.1.8
-  configChecksum: c477ed889b5e865f3e17c7e224e25a2f
+  releaseVersion: 0.1.9
+  configChecksum: 8cf84fd5da15e8688edc6e3832c91a2d
   repoURL: https://github.com/Codehagen/dingify-sdk.git
   installationURL: https://github.com/Codehagen/dingify-sdk
   published: true
@@ -50,12 +50,16 @@ generatedFiles:
   - tsconfig.json
   - src/models/components/event.ts
   - src/models/components/eventcreate.ts
+  - src/models/components/eventsresponse.ts
   - src/models/components/security.ts
+  - src/models/errors/unauthorizederror.ts
   - src/models/errors/index.ts
   - src/models/components/index.ts
   - docs/models/components/event.md
   - docs/models/components/eventcreate.md
+  - docs/models/components/eventsresponse.md
   - docs/models/components/security.md
+  - docs/models/errors/unauthorizederror.md
   - USAGE.md
   - .gitattributes
   - src/hooks/hooks.ts
