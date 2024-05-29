@@ -5,8 +5,8 @@ management:
   docVersion: 1.0.0
   speakeasyVersion: 1.297.0
   generationVersion: 2.338.1
-  releaseVersion: 0.1.11
-  configChecksum: 8d9a2f24d63626c65434b496ce069ab9
+  releaseVersion: 0.1.12
+  configChecksum: 2346c8fd486cfc119c7be40832736fe9
   repoURL: https://github.com/Codehagen/dingify-sdk.git
   installationURL: https://github.com/Codehagen/dingify-sdk
   published: true
