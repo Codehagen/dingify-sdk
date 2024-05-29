@@ -138,7 +138,7 @@ components:
           type: string
           description: The channel name where the event is registered.
           example: new-channel-name
-        user_id:
+        userId:
           type: string
           description: The ID of the user associated with the event.
           example: user-999
@@ -162,7 +162,7 @@ components:
         - name
         - channel
         - notify
-        - user_id
+        - userId
     EventsResponse:
       type: object
       properties:

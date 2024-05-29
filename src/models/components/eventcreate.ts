@@ -37,7 +37,7 @@ export namespace EventCreate$ {
         .object({
             name: z.string(),
             channel: z.string(),
-            user_id: z.string(),
+            userId: z.string(),
             icon: z.string().optional(),
             notify: z.boolean(),
             tags: z.record(z.string()).optional(),
@@ -46,7 +46,7 @@ export namespace EventCreate$ {
             return {
                 name: v.name,
                 channel: v.channel,
-                userId: v.user_id,
+                userId: v.userId,
                 ...(v.icon === undefined ? null : { icon: v.icon }),
                 notify: v.notify,
                 ...(v.tags === undefined ? null : { tags: v.tags }),
@@ -56,7 +56,7 @@ export namespace EventCreate$ {
     export type Outbound = {
         name: string;
         channel: string;
-        user_id: string;
+        userId: string;
         icon?: string | undefined;
         notify: boolean;
         tags?: { [k: string]: string } | undefined;
@@ -75,7 +75,7 @@ export namespace EventCreate$ {
             return {
                 name: v.name,
                 channel: v.channel,
-                user_id: v.userId,
+                userId: v.userId,
                 ...(v.icon === undefined ? null : { icon: v.icon }),
                 notify: v.notify,
                 ...(v.tags === undefined ? null : { tags: v.tags }),
