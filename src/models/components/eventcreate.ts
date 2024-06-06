@@ -33,25 +33,14 @@ export type EventCreate = {
 
 /** @internal */
 export namespace EventCreate$ {
-    export const inboundSchema: z.ZodType<EventCreate, z.ZodTypeDef, unknown> = z
-        .object({
-            name: z.string(),
-            channel: z.string(),
-            userId: z.string(),
-            icon: z.string().optional(),
-            notify: z.boolean(),
-            tags: z.record(z.string()).optional(),
-        })
-        .transform((v) => {
-            return {
-                name: v.name,
-                channel: v.channel,
-                userId: v.userId,
-                ...(v.icon === undefined ? null : { icon: v.icon }),
-                notify: v.notify,
-                ...(v.tags === undefined ? null : { tags: v.tags }),
-            };
-        });
+    export const inboundSchema: z.ZodType<EventCreate, z.ZodTypeDef, unknown> = z.object({
+        name: z.string(),
+        channel: z.string(),
+        userId: z.string(),
+        icon: z.string().optional(),
+        notify: z.boolean(),
+        tags: z.record(z.string()).optional(),
+    });
 
     export type Outbound = {
         name: string;
@@ -62,23 +51,12 @@ export namespace EventCreate$ {
         tags?: { [k: string]: string } | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, EventCreate> = z
-        .object({
-            name: z.string(),
-            channel: z.string(),
-            userId: z.string(),
-            icon: z.string().optional(),
-            notify: z.boolean(),
-            tags: z.record(z.string()).optional(),
-        })
-        .transform((v) => {
-            return {
-                name: v.name,
-                channel: v.channel,
-                userId: v.userId,
-                ...(v.icon === undefined ? null : { icon: v.icon }),
-                notify: v.notify,
-                ...(v.tags === undefined ? null : { tags: v.tags }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, EventCreate> = z.object({
+        name: z.string(),
+        channel: z.string(),
+        userId: z.string(),
+        icon: z.string().optional(),
+        notify: z.boolean(),
+        tags: z.record(z.string()).optional(),
+    });
 }

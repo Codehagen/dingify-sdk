@@ -89,3 +89,13 @@ Based on:
 - [typescript v0.1.15] .
 ### Releases
 - [NPM v0.1.15] https://www.npmjs.com/package/dingify/v/0.1.15 - .
+
+## 2024-06-06 00:05:16
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.300.0 (2.338.14) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [typescript v0.1.16] .
+### Releases
+- [NPM v0.1.16] https://www.npmjs.com/package/dingify/v/0.1.16 - .

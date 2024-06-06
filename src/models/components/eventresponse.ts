@@ -13,19 +13,11 @@ export type EventResponse = {
 
 /** @internal */
 export namespace EventResponse$ {
-    export const inboundSchema: z.ZodType<EventResponse, z.ZodTypeDef, unknown> = z
-        .object({
-            ok: z.boolean().optional(),
-            message: z.string().optional(),
-            event: Event$.inboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.ok === undefined ? null : { ok: v.ok }),
-                ...(v.message === undefined ? null : { message: v.message }),
-                ...(v.event === undefined ? null : { event: v.event }),
-            };
-        });
+    export const inboundSchema: z.ZodType<EventResponse, z.ZodTypeDef, unknown> = z.object({
+        ok: z.boolean().optional(),
+        message: z.string().optional(),
+        event: Event$.inboundSchema.optional(),
+    });
 
     export type Outbound = {
         ok?: boolean | undefined;
@@ -33,17 +25,9 @@ export namespace EventResponse$ {
         event?: Event$.Outbound | undefined;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, EventResponse> = z
-        .object({
-            ok: z.boolean().optional(),
-            message: z.string().optional(),
-            event: Event$.outboundSchema.optional(),
-        })
-        .transform((v) => {
-            return {
-                ...(v.ok === undefined ? null : { ok: v.ok }),
-                ...(v.message === undefined ? null : { message: v.message }),
-                ...(v.event === undefined ? null : { event: v.event }),
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, EventResponse> = z.object({
+        ok: z.boolean().optional(),
+        message: z.string().optional(),
+        event: Event$.outboundSchema.optional(),
+    });
 }
