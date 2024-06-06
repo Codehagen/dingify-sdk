@@ -44,10 +44,7 @@ export namespace UnauthorizedError$ {
             message: z.string(),
         })
         .transform((v) => {
-            return new UnauthorizedError({
-                ok: v.ok,
-                message: v.message,
-            });
+            return new UnauthorizedError(v);
         });
 
     export type Outbound = {
@@ -59,16 +56,9 @@ export namespace UnauthorizedError$ {
         .instanceof(UnauthorizedError)
         .transform((v) => v.data$)
         .pipe(
-            z
-                .object({
-                    ok: z.boolean(),
-                    message: z.string(),
-                })
-                .transform((v) => {
-                    return {
-                        ok: v.ok,
-                        message: v.message,
-                    };
-                })
+            z.object({
+                ok: z.boolean(),
+                message: z.string(),
+            })
         );
 }

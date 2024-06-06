@@ -41,32 +41,19 @@ export type Event = {
 
 /** @internal */
 export namespace Event$ {
-    export const inboundSchema: z.ZodType<Event, z.ZodTypeDef, unknown> = z
-        .object({
-            id: z.string(),
-            name: z.string(),
-            channelId: z.string(),
-            userId: z.string(),
-            icon: z.string(),
-            notify: z.boolean(),
-            tags: z.record(z.string()).optional(),
-            createdAt: z
-                .string()
-                .datetime({ offset: true })
-                .transform((v) => new Date(v)),
-        })
-        .transform((v) => {
-            return {
-                id: v.id,
-                name: v.name,
-                channelId: v.channelId,
-                userId: v.userId,
-                icon: v.icon,
-                notify: v.notify,
-                ...(v.tags === undefined ? null : { tags: v.tags }),
-                createdAt: v.createdAt,
-            };
-        });
+    export const inboundSchema: z.ZodType<Event, z.ZodTypeDef, unknown> = z.object({
+        id: z.string(),
+        name: z.string(),
+        channelId: z.string(),
+        userId: z.string(),
+        icon: z.string(),
+        notify: z.boolean(),
+        tags: z.record(z.string()).optional(),
+        createdAt: z
+            .string()
+            .datetime({ offset: true })
+            .transform((v) => new Date(v)),
+    });
 
     export type Outbound = {
         id: string;
@@ -79,27 +66,14 @@ export namespace Event$ {
         createdAt: string;
     };
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Event> = z
-        .object({
-            id: z.string(),
-            name: z.string(),
-            channelId: z.string(),
-            userId: z.string(),
-            icon: z.string(),
-            notify: z.boolean(),
-            tags: z.record(z.string()).optional(),
-            createdAt: z.date().transform((v) => v.toISOString()),
-        })
-        .transform((v) => {
-            return {
-                id: v.id,
-                name: v.name,
-                channelId: v.channelId,
-                userId: v.userId,
-                icon: v.icon,
-                notify: v.notify,
-                ...(v.tags === undefined ? null : { tags: v.tags }),
-                createdAt: v.createdAt,
-            };
-        });
+    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, Event> = z.object({
+        id: z.string(),
+        name: z.string(),
+        channelId: z.string(),
+        userId: z.string(),
+        icon: z.string(),
+        notify: z.boolean(),
+        tags: z.record(z.string()).optional(),
+        createdAt: z.date().transform((v) => v.toISOString()),
+    });
 }
