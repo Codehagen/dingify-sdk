@@ -12,7 +12,7 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: false
 typescript:
-  version: 0.1.18
+  version: 0.2.0
   additionalDependencies:
     dependencies: {}
     devDependencies: {}
@@ -37,3 +37,4 @@ typescript:
   packageName: dingify
   responseFormat: flat
   templateVersion: v2
+  useIndexModules: true

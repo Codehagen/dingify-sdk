@@ -132,7 +132,7 @@ Validation errors can also occur when either method arguments or data returned f
 
 ```typescript
 import { Dingify } from "dingify";
-import * as errors from "dingify/models/errors";
+import { SDKValidationError } from "dingify/models/errors";
 
 const dingify = new Dingify({
     apiKey: "<YOUR_API_KEY_HERE>",
@@ -154,7 +154,7 @@ async function run() {
         });
     } catch (err) {
         switch (true) {
-            case err instanceof errors.SDKValidationError: {
+            case err instanceof SDKValidationError: {
                 // Validation errors can be pretty-printed
                 console.error(err.pretty());
                 // Raw value may also be inspected
