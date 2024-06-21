@@ -3,17 +3,17 @@ id: 6250b250-1f28-403b-a1c6-452ade2211c7
 management:
   docChecksum: 277eb484dd0b1cc1e11e50240c91e379
   docVersion: 1.0.0
-  speakeasyVersion: 1.310.0
-  generationVersion: 2.347.4
-  releaseVersion: 0.2.0
-  configChecksum: 10248a8e6314bdfd497207cdce423dbc
+  speakeasyVersion: 1.313.0
+  generationVersion: 2.347.8
+  releaseVersion: 0.2.1
+  configChecksum: b3dc04a2b3aa6da43f5f863258b931ff
   repoURL: https://github.com/Codehagen/dingify-sdk.git
   installationURL: https://github.com/Codehagen/dingify-sdk
   published: true
 features:
   typescript:
     additionalDependencies: 0.1.0
-    core: 3.10.0
+    core: 3.10.1
     globalSecurity: 2.82.9
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0
