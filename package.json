@@ -1,7 +1,7 @@
 {
   "name": "dingify",
-  "version": "0.2.2",
-  "author": "Speakeasy",  
+  "version": "0.3.0",
+  "author": "Speakeasy",
   "main": "./index.js",
   "sideEffects": false,
   "repository": {
