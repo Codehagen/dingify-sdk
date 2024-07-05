@@ -3,7 +3,7 @@
  */
 
 import { SDKHooks } from "../hooks/hooks.js";
-import { SDK_METADATA, SDKOptions, serverURLFromOptions } from "../lib/config.js";
+import { SDKOptions, serverURLFromOptions } from "../lib/config.js";
 import { encodeJSON as encodeJSON$ } from "../lib/encodings.js";
 import { HTTPClient } from "../lib/http.js";
 import * as schemas$ from "../lib/schemas.js";
@@ -49,10 +49,6 @@ export class Events extends ClientSDK {
         options?: RequestOptions
     ): Promise<components.EventResponse> {
         const input$ = request;
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Content-Type", "application/json");
-        headers$.set("Accept", "application/json");
 
         const payload$ = schemas$.parse(
             input$,
@@ -65,6 +61,11 @@ export class Events extends ClientSDK {
         const path$ = this.templateURLComponent("/events")();
 
         const query$ = "";
+
+        const headers$ = new Headers({
+            "Content-Type": "application/json",
+            Accept: "application/json",
+        });
 
         let security$;
         if (typeof this.options$.apiKey === "function") {
@@ -81,7 +82,6 @@ export class Events extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["400", "401", "404", "4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             {
@@ -95,7 +95,10 @@ export class Events extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const response = await this.do$(request$, {
+            context,
+            errorCodes: ["400", "401", "404", "4XX", "5XX"],
+        });
 
         const responseFields$ = {
             HttpMeta: { Response: response, Request: request$ },
@@ -117,13 +120,13 @@ export class Events extends ClientSDK {
      * Retrieves all logged events that the user has access to.
      */
     async getEvents(options?: RequestOptions): Promise<components.EventsResponse> {
-        const headers$ = new Headers();
-        headers$.set("user-agent", SDK_METADATA.userAgent);
-        headers$.set("Accept", "application/json");
-
         const path$ = this.templateURLComponent("/events")();
 
         const query$ = "";
+
+        const headers$ = new Headers({
+            Accept: "application/json",
+        });
 
         let security$;
         if (typeof this.options$.apiKey === "function") {
@@ -140,7 +143,6 @@ export class Events extends ClientSDK {
         };
         const securitySettings$ = this.resolveGlobalSecurity(security$);
 
-        const doOptions = { context, errorCodes: ["401", "4XX", "5XX"] };
         const request$ = this.createRequest$(
             context,
             {
@@ -153,7 +155,7 @@ export class Events extends ClientSDK {
             options
         );
 
-        const response = await this.do$(request$, doOptions);
+        const response = await this.do$(request$, { context, errorCodes: ["401", "4XX", "5XX"] });
 
         const responseFields$ = {
             HttpMeta: { Response: response, Request: request$ },
