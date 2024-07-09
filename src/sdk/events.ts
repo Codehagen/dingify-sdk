@@ -52,7 +52,7 @@ export class Events extends ClientSDK {
 
         const payload$ = schemas$.parse(
             input$,
-            (value$) => components.EventCreate$.outboundSchema.optional().parse(value$),
+            (value$) => components.EventCreate$outboundSchema.optional().parse(value$),
             "Input validation failed"
         );
         const body$ =
@@ -105,9 +105,9 @@ export class Events extends ClientSDK {
         };
 
         const [result$] = await this.matcher<components.EventResponse>()
-            .json(201, components.EventResponse$)
+            .json(201, components.EventResponse$inboundSchema)
             .fail([400, 404, "4XX", "5XX"])
-            .json(401, errors.UnauthorizedError$, { err: true })
+            .json(401, errors.UnauthorizedError$inboundSchema, { err: true })
             .match(response, { extraFields: responseFields$ });
 
         return result$;
@@ -162,8 +162,8 @@ export class Events extends ClientSDK {
         };
 
         const [result$] = await this.matcher<components.EventsResponse>()
-            .json(200, components.EventsResponse$)
-            .json(401, errors.UnauthorizedError$, { err: true })
+            .json(200, components.EventsResponse$inboundSchema)
+            .json(401, errors.UnauthorizedError$inboundSchema, { err: true })
             .fail(["4XX", "5XX"])
             .match(response, { extraFields: responseFields$ });
 

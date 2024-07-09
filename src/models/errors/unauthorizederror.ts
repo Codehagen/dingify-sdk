@@ -22,23 +22,22 @@ export class UnauthorizedError extends Error {
     data$: UnauthorizedErrorData;
 
     constructor(err: UnauthorizedErrorData) {
-        super("");
+        const message =
+            "message" in err && typeof err.message === "string"
+                ? err.message
+                : `API error occurred: ${JSON.stringify(err)}`;
+        super(message);
         this.data$ = err;
 
         this.ok = err.ok;
-
-        this.message =
-            "message" in err && typeof err.message === "string"
-                ? err.message
-                : "API error occurred";
 
         this.name = "UnauthorizedError";
     }
 }
 
 /** @internal */
-export namespace UnauthorizedError$ {
-    export const inboundSchema: z.ZodType<UnauthorizedError, z.ZodTypeDef, unknown> = z
+export const UnauthorizedError$inboundSchema: z.ZodType<UnauthorizedError, z.ZodTypeDef, unknown> =
+    z
         .object({
             ok: z.boolean(),
             message: z.string(),
@@ -47,18 +46,36 @@ export namespace UnauthorizedError$ {
             return new UnauthorizedError(v);
         });
 
-    export type Outbound = {
-        ok: boolean;
-        message: string;
-    };
+/** @internal */
+export type UnauthorizedError$Outbound = {
+    ok: boolean;
+    message: string;
+};
 
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, UnauthorizedError> = z
-        .instanceof(UnauthorizedError)
-        .transform((v) => v.data$)
-        .pipe(
-            z.object({
-                ok: z.boolean(),
-                message: z.string(),
-            })
-        );
+/** @internal */
+export const UnauthorizedError$outboundSchema: z.ZodType<
+    UnauthorizedError$Outbound,
+    z.ZodTypeDef,
+    UnauthorizedError
+> = z
+    .instanceof(UnauthorizedError)
+    .transform((v) => v.data$)
+    .pipe(
+        z.object({
+            ok: z.boolean(),
+            message: z.string(),
+        })
+    );
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace UnauthorizedError$ {
+    /** @deprecated use `UnauthorizedError$inboundSchema` instead. */
+    export const inboundSchema = UnauthorizedError$inboundSchema;
+    /** @deprecated use `UnauthorizedError$outboundSchema` instead. */
+    export const outboundSchema = UnauthorizedError$outboundSchema;
+    /** @deprecated use `UnauthorizedError$Outbound` instead. */
+    export type Outbound = UnauthorizedError$Outbound;
 }
