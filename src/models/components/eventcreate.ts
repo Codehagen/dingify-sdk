@@ -32,31 +32,48 @@ export type EventCreate = {
 };
 
 /** @internal */
+export const EventCreate$inboundSchema: z.ZodType<EventCreate, z.ZodTypeDef, unknown> = z.object({
+    name: z.string(),
+    channel: z.string(),
+    userId: z.string(),
+    icon: z.string().optional(),
+    notify: z.boolean(),
+    tags: z.record(z.string()).optional(),
+});
+
+/** @internal */
+export type EventCreate$Outbound = {
+    name: string;
+    channel: string;
+    userId: string;
+    icon?: string | undefined;
+    notify: boolean;
+    tags?: { [k: string]: string } | undefined;
+};
+
+/** @internal */
+export const EventCreate$outboundSchema: z.ZodType<
+    EventCreate$Outbound,
+    z.ZodTypeDef,
+    EventCreate
+> = z.object({
+    name: z.string(),
+    channel: z.string(),
+    userId: z.string(),
+    icon: z.string().optional(),
+    notify: z.boolean(),
+    tags: z.record(z.string()).optional(),
+});
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
 export namespace EventCreate$ {
-    export const inboundSchema: z.ZodType<EventCreate, z.ZodTypeDef, unknown> = z.object({
-        name: z.string(),
-        channel: z.string(),
-        userId: z.string(),
-        icon: z.string().optional(),
-        notify: z.boolean(),
-        tags: z.record(z.string()).optional(),
-    });
-
-    export type Outbound = {
-        name: string;
-        channel: string;
-        userId: string;
-        icon?: string | undefined;
-        notify: boolean;
-        tags?: { [k: string]: string } | undefined;
-    };
-
-    export const outboundSchema: z.ZodType<Outbound, z.ZodTypeDef, EventCreate> = z.object({
-        name: z.string(),
-        channel: z.string(),
-        userId: z.string(),
-        icon: z.string().optional(),
-        notify: z.boolean(),
-        tags: z.record(z.string()).optional(),
-    });
+    /** @deprecated use `EventCreate$inboundSchema` instead. */
+    export const inboundSchema = EventCreate$inboundSchema;
+    /** @deprecated use `EventCreate$outboundSchema` instead. */
+    export const outboundSchema = EventCreate$outboundSchema;
+    /** @deprecated use `EventCreate$Outbound` instead. */
+    export type Outbound = EventCreate$Outbound;
 }
